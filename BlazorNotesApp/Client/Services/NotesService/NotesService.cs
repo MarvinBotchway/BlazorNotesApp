@@ -19,9 +19,11 @@ namespace BlazorNotesApp.Client.Services.NotesService
             if (result != null) Notes = result;
         }
 
-        public Task<NoteModel> GetSingleNote(int id)
+        public async Task<NoteModel> GetSingleNote(int id)
         {
-            throw new NotImplementedException();
+            var result = await _http.GetFromJsonAsync<NoteModel>($"api/notes/{id}");
+            if (result != null) return result;
+            throw new Exception("No Note Here");
         }
     }
 }

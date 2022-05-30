@@ -1,0 +1,29 @@
+﻿@page "/note"
+@page "/note/{id:int}"
+@inject INotesService NotesService
+
+@if (Id == null)
+{
+    <PageTitle>New Note</PageTitle>
+    <h3>New Note</h3>
+}
+else
+{
+    <PageTitle>Update @note.Heading</PageTitle>
+    <h3>Update @note.Heading</h3>
+}
+
+
+@code {
+    [Parameter]
+
+    public int Id { get; set; }
+
+    NoteModel note = new NoteModel();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        note = await NotesService.GetSingleNote(Id);
+    }
+
+}
