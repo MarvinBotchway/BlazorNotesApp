@@ -1,0 +1,22 @@
+﻿@page "/notes"
+@inject INotesService NotesService
+
+<PageTitle>Notes</PageTitle>
+<h3>Notes</h3>
+
+ <ul>
+    @foreach(var note in NotesService.Notes)
+    {
+   
+        <li>@note.Heading</li>
+   
+    }
+ </ul>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await NotesService.GetNotes();
+    }
+
+}

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNotesApp.Server", "BlazorNotesApp\Server\BlazorNotesApp.Server.csproj", "{198D31E8-FC51-4424-B2C2-B186E4A8AC93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorNotesApp.Server", "BlazorNotesApp\Server\BlazorNotesApp.Server.csproj", "{198D31E8-FC51-4424-B2C2-B186E4A8AC93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNotesApp.Client", "BlazorNotesApp\Client\BlazorNotesApp.Client.csproj", "{A08DA456-895D-4D8C-AEB9-91231F7BD490}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorNotesApp.Client", "BlazorNotesApp\Client\BlazorNotesApp.Client.csproj", "{A08DA456-895D-4D8C-AEB9-91231F7BD490}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNotesApp.Shared", "BlazorNotesApp\Shared\BlazorNotesApp.Shared.csproj", "{34E933C5-AEBD-4613-90FC-F933C4FF3366}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorNotesApp.Shared", "BlazorNotesApp\Shared\BlazorNotesApp.Shared.csproj", "{34E933C5-AEBD-4613-90FC-F933C4FF3366}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
