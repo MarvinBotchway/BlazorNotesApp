@@ -1,5 +1,6 @@
 ﻿@page "/notes"
 @inject INotesService NotesService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Notes</PageTitle>
 <h3>Notes</h3>
@@ -13,17 +14,24 @@
                 <div class="fw-bold">@note.Heading</div>
                     @note.Body.Substring(0, 50) ...
             </div>
+            <button class="btn btn-primary" @onclick="(() => ShowNote(note.Id))">
+                <i class="oi oi-pencil"></i>
+            </button>
         </li>
    
     }
  </ul>
 
 @code {
-    
+
 
     protected override async Task OnInitializedAsync()
     {
         await NotesService.GetNotes();
     }
 
+    void ShowNote(int id)
+    {
+        NavigationManager.NavigateTo($"/note/{id}");
+    }
 }
