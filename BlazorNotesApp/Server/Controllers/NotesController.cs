@@ -7,37 +7,28 @@ namespace BlazorNotesApp.Server.Controllers
     [ApiController]
     public class NotesController : ControllerBase
     {
-        public List<NoteModel> notes = new List<NoteModel>()
-        {
-            new NoteModel()
-            {
-                Id = 1,
-                Heading = "First Note",
-                Body = "This is the first note about the first thing I want to talk about",
-                IsChecked = false,
-            },
-            new NoteModel()
-            {
-                Id = 2,
-                Heading = "Second Note",
-                Body = "This is the Second note about the second thing I want to talk about",
-                IsChecked = true,
-            }
-        };
+        private readonly DatabaseContext _context;
 
+        public NotesController(DatabaseContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<NoteModel>>> GetNotes()
         {
+            var notes = await _context.Notes
+                .ToListAsync();
             return Ok( notes);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<NoteModel>> GetSingleNote(int id)
         {
-            var result = notes.FirstOrDefault<NoteModel>(n => n.Id == id);
-            if (result == null) return NotFound();
-            return Ok( result);
+            var note = _context.Notes
+                .FirstOrDefault<NoteModel>(n => n.Id == id);
+            if (note == null) return NotFound();
+            return Ok( note );
         }
 
         
