@@ -31,7 +31,23 @@ namespace BlazorNotesApp.Server.Controllers
             return Ok( note );
         }
 
-        [HttpPost]
+        [HttpPost("{id}")]
+        public async Task<ActionResult<List<NoteModel>>> CreateNote(NoteModel note, int id)
+        {
+            var DbNote = _context.Notes
+                .FirstOrDefault<NoteModel>(n => n.Id == id);
+            if (DbNote == null) return NotFound();
+
+            DbNote.Heading = note.Heading;
+            DbNote.Body = note.Body;
+            DbNote.IsChecked = note.IsChecked;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await GetDbNotes());
+        }
+
+        [HttpPut]
         public async Task<ActionResult<List<NoteModel>>> CreateNote(NoteModel note)
         {
             await _context.Notes.AddAsync(note);
