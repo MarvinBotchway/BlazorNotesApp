@@ -10,20 +10,46 @@
 else
 {
     <PageTitle>Update @note.Heading</PageTitle>
-    <h3>Update @note.Heading</h3>
+    <h3>Edit @note.Heading</h3>
 }
+
+<EditForm Model="note" OnSubmit="HandleSubmit">
+    <div>
+        <label for="heading">Heading</label>
+        <InputText id="heading" class="form-control" @bind-Value="@note.Heading"></InputText>
+    </div>
+    <div>
+        <label for="body">Body</label>
+        <InputTextArea id="body" class="form-control" @bind-Value="@note.Body"></InputTextArea>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+
+</EditForm>
 
 
 @code {
     [Parameter]
 
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     NoteModel note = new NoteModel();
+
+    string btnText = string.Empty;
 
     protected override async Task OnParametersSetAsync()
     {
         note = await NotesService.GetSingleNote(Id);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = Id == null ? "Create Note" : "Update Note";
+    }
+
+    async Task HandleSubmit()
+    {
+        
     }
 
 }

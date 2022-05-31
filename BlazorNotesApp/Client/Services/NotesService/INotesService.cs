@@ -5,6 +5,6 @@
         public List<NoteModel> Notes { get; set; }
 
         Task GetNotes();
-        Task<NoteModel> GetSingleNote(int id);
+        Task<NoteModel> GetSingleNote(int? id);
     }
 }
