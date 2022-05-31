@@ -1,4 +1,5 @@
 global using BlazorNotesApp.Shared;
+global using Microsoft.EntityFrameworkCore;
 
 using Microsoft.AspNetCore.ResponseCompression;
 
