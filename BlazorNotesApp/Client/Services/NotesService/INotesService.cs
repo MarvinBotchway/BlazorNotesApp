@@ -6,5 +6,6 @@
 
         Task GetNotes();
         Task<NoteModel> GetSingleNote(int? id);
+        Task CreateNote(NoteModel note);
     }
 }

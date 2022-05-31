@@ -31,8 +31,20 @@ namespace BlazorNotesApp.Server.Controllers
             return Ok( note );
         }
 
-        
+        [HttpPost]
+        public async Task<ActionResult<List<NoteModel>>> CreateNote(NoteModel note)
+        {
+            await _context.Notes.AddAsync(note);
+            await _context.SaveChangesAsync();
 
+            return Ok(await GetDbNotes());
+        }
+
+        private async Task<List<NoteModel>> GetDbNotes()
+        {
+            return await _context.Notes.ToListAsync();
+
+        }
 
 
     }

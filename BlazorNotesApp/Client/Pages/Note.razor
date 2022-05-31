@@ -49,6 +49,10 @@ else
 
     async Task HandleSubmit()
     {
+        if (Id == null)
+        {
+           await NotesService.CreateNote(note);
+        }
         
     }
 

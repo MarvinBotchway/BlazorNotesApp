@@ -8,11 +8,10 @@
  <ul class="list-group">
     @foreach(var note in NotesService.Notes)
     {
-   
         <li class="list-group-item d-flex justify-content-between align-items-start ">
             <div class="ms-2 me-auto">
                 <div class="fw-bold">@note.Heading</div>
-                    @note.Body.Substring(0, 50) ...
+                     @note.Body
             </div>
             <button class="btn btn-primary" @onclick="(() => ShowNote(note.Id))">
                 <i class="oi oi-pencil"></i>
@@ -20,7 +19,11 @@
         </li>
    
     }
+    
  </ul>
+ <br />
+ <button class="btn btn-primary" @onclick="OpenCreateNote">Create Note</button>
+
 
 @code {
 
@@ -33,5 +36,10 @@
     void ShowNote(int id)
     {
         NavigationManager.NavigateTo($"/note/{id}");
+    }
+
+    void OpenCreateNote()
+    {
+        NavigationManager.NavigateTo("/note");
     }
 }
