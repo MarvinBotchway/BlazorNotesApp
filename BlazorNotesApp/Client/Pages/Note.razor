@@ -55,9 +55,13 @@ else
     {
         if (Id == null)
         {
-           await NotesService.CreateNote(note);
+            await NotesService.CreateNote(note);
         }
-        
+        else
+        {
+            await NotesService.UpdateNote(note, Id);
+        }
+
     }
 
 }

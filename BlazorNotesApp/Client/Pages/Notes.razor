@@ -13,9 +13,17 @@
                 <div class="fw-bold">@note.Heading</div>
                      @note.Body
             </div>
-            <button class="btn btn-primary" @onclick="(() => ShowNote(note.Id))">
-                <i class="oi oi-pencil"></i>
-            </button>
+            <div style="margin-right:1rem">
+                <button class="btn btn-primary" @onclick="(() => ShowNote(note.Id))">
+                    <i class="oi oi-pencil"></i>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-danger" @onclick="(() => DeleteNote(note.Id))">
+                    <i class="oi oi-x"></i>
+                </button>
+            </div>
+            
         </li>
    
     }
@@ -23,6 +31,7 @@
  </ul>
  <br />
  <button class="btn btn-primary" @onclick="OpenCreateNote">Create Note</button>
+ 
 
 
 @code {
@@ -36,6 +45,12 @@
     void ShowNote(int id)
     {
         NavigationManager.NavigateTo($"/note/{id}");
+    }
+
+    async Task DeleteNote(int id)
+    {
+        await NotesService.DeleteNote(id);
+        NavigationManager.NavigateTo("/notes");
     }
 
     void OpenCreateNote()

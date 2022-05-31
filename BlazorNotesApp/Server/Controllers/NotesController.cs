@@ -31,7 +31,7 @@ namespace BlazorNotesApp.Server.Controllers
             return Ok( note );
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<List<NoteModel>>> CreateNote(NoteModel note, int id)
         {
             var DbNote = _context.Notes
@@ -47,7 +47,21 @@ namespace BlazorNotesApp.Server.Controllers
             return Ok(await GetDbNotes());
         }
 
-        [HttpPut]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<NoteModel>>> DeleteNote(int id)
+        {
+            var DbNote = _context.Notes
+                .FirstOrDefault<NoteModel>(n => n.Id == id);
+            if (DbNote == null) return NotFound();
+
+            _context.Notes.Remove(DbNote);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await GetDbNotes());
+        }
+
+        [HttpPost]
         public async Task<ActionResult<List<NoteModel>>> CreateNote(NoteModel note)
         {
             await _context.Notes.AddAsync(note);

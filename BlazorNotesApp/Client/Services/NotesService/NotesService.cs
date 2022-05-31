@@ -35,6 +35,17 @@ namespace BlazorNotesApp.Client.Services.NotesService
             await SetNotes(result);
         }
 
+        public async Task UpdateNote(NoteModel note, int? id)
+        {
+            var result = await _http.PutAsJsonAsync<NoteModel>($"api/notes/{id}", note);
+            await SetNotes(result);
+        }
+
+        public async Task DeleteNote(int? id)
+        {
+            var result = await _http.DeleteAsync($"api/notes/{id}");
+            await SetNotes(result);
+        }
 
 
         private async Task SetNotes(HttpResponseMessage result)
