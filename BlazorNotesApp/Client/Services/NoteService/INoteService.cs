@@ -4,8 +4,8 @@
     {
         public List<NoteModel> Notes { get; set; }
 
-        Task GetNotes();
-        Task<NoteModel> GetSingleNote(int? id);
+        Task GetNotesAsync();
+        Task<NoteModel> GetSingleNoteAsync(int? id);
         Task CreateNote(NoteModel note);
         Task UpdateNote(NoteModel note, int? id);
         Task DeleteNote(int? id);

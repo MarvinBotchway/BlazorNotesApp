@@ -39,7 +39,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await NotesService.GetNotes();
+        await NotesService.GetNotesAsync();
     }
 
     void ShowNote(int id)

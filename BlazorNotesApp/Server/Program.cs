@@ -1,6 +1,7 @@
 global using BlazorNotesApp.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorNotesApp.Server.Data;
+global using BlazorNotesApp.Server.Services.NoteService;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<INoteService, NoteService>();
 builder.Services.AddDbContext<DatabaseContext> (options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

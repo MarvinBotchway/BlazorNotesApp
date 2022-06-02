@@ -16,16 +16,17 @@ namespace BlazorNotesApp.Client.Services.NotesService
 
         public List<NoteModel> Notes { get; set; } = new List<NoteModel>();
 
-        public async Task GetNotes()
+        public async Task GetNotesAsync()
         {
-            var response = await _http.GetFromJsonAsync<List<NoteModel>>("api/note");
-            if (response != null) Notes = response;
+            var response = await _http.GetFromJsonAsync<ServiceResponse<List<NoteModel>>>("api/note");
+            if (response != null && response.Data != null) Notes = response.Data;
         }
 
-        public async Task<NoteModel> GetSingleNote(int? id)
+        public async Task<NoteModel> GetSingleNoteAsync(int? id)
         {
-            var result = await _http.GetFromJsonAsync<NoteModel>($"api/note/{id}");
-            if (result != null) return result;
+            var response = await _http.GetFromJsonAsync<ServiceResponse<NoteModel>>($"api/note/{id}");
+            if (response != null && response.Data != null) return response.Data;
+
             throw new Exception("No Note Here");
         }
 

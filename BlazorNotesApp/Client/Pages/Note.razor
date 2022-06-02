@@ -1,6 +1,6 @@
 ﻿@page "/note"
 @page "/note/{id:int}"
-@inject INoteService NotesService
+@inject INoteService NoteService
 
 @if (Id == null)
 {
@@ -43,7 +43,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        note = await NotesService.GetSingleNote(Id);
+        note = await NoteService.GetSingleNoteAsync(Id);
     }
 
     protected override async Task OnInitializedAsync()
@@ -55,11 +55,11 @@ else
     {
         if (Id == null)
         {
-            await NotesService.CreateNote(note);
+            await NoteService.CreateNote(note);
         }
         else
         {
-            await NotesService.UpdateNote(note, Id);
+            await NoteService.UpdateNote(note, Id);
         }
 
     }
