@@ -5,11 +5,11 @@ namespace BlazorNotesApp.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NotesController : ControllerBase
+    public class NoteController : ControllerBase
     {
         private readonly DatabaseContext _context;
 
-        public NotesController(DatabaseContext context)
+        public NoteController(DatabaseContext context)
         {
             _context = context;
         }

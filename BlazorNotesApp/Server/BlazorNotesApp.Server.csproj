@@ -21,5 +21,9 @@
     <ProjectReference Include="..\Shared\BlazorNotesApp.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\NoteService\" />
+  </ItemGroup>
+
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace BlazorNotesApp.Client.Services.NotesService
 {
-    public interface INotesService
+    public interface INoteService
     {
         public List<NoteModel> Notes { get; set; }
 
